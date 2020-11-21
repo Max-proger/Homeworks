@@ -8,3 +8,73 @@
 Выполните вызов методов и также покажите результат.
 
 """
+
+class Car:
+
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+
+    def go(self):
+        print(f'{self.name} старт')
+
+    def stop(self):
+        print(f'{self.name} стоп')
+
+    def turn(self, direction):
+        print(f'{self.name} поворот на {direction}')
+
+    def show_speed(self):
+        print(f'Скорость {self.name} составила {self.speed}')
+
+
+class TownCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+    def show_speed(self):
+        print(f'Скорость {self.name} составила {self.speed}')
+
+        if self.speed > 40:
+            print(f'Скорость {self.name} превышает допустимую')
+        else:
+            print(f'Допустимая скорость для {self.name}')
+
+
+class SportCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+
+class WorkCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+    def show_speed(self):
+        print(f'Скорость {self.name} составила {self.speed}')
+
+        if self.speed > 60:
+            print(f'Скорость {self.name} ревышает допустимую')
+
+
+class PoliceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+    def police(self):
+        if self.is_police:
+            print(f'{self.name} полицейская машина')
+        else:
+            print(f'{self.name} полицейская машина')
+
+
+ferrari = SportCar(100, 'красная', 'Ferrari', False)
+crysler = TownCar(30, 'серый', 'Сrysler', False)
+gaz = WorkCar(70, 'зеленый', 'Gaz', True)
+ford = PoliceCar(110, 'белый', 'Ford', True)
+ferrari.go()
+ferrari.stop()
+ferrari.turn('направо')
+ferrari.show_speed()
