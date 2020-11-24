@@ -7,3 +7,21 @@
 Например: 20м * 5000м * 25кг * 5см = 12500 т
 
 """
+
+class Road:
+    _length = 0
+    _width = 0
+
+    def __init__(self, lenght, width):
+        self._length = float(lenght)
+        self._width = float(width)
+
+    def calculation(self, h):
+        mass = 25.7
+        mass_calc: float = (self._length * self._width * mass * float(h)) / 1000
+        print(f'Для покрытия дорожного полотна мелкозернистым плот. тип А м I длиною {self._length} метров и шириною '
+              f'{self._width} метров при высоте {h} см необходимо {mass_calc} тонн асфальта.')
+
+
+a = Road(20, 5000)
+a.calculation(5)
