@@ -7,3 +7,37 @@
 реализовать проверку типа элемента и вносить его в список, только если введено число. Класс-исключение должен не
 позволить пользователю ввести текст (не число) и отобразить соответствующее сообщение. При этом работа скрипта не
 должна завершаться. """
+class NotANumber(ValueError):
+    def __init__(self, text):
+        self.text = text
+
+
+def number(num):
+    try:
+        num = int(num)
+        return num
+    except ValueError:
+        try:
+            num = float(num)
+            return num
+        except ValueError:
+            try:
+                num = complex(num)
+                return num
+            except ValueError:
+                return False
+
+
+numbers = []
+while True:
+    a = input('введите число: ')
+
+    try:
+        if a == 'q':
+            exit(numbers)
+        if not number(a):
+            raise NotANumber(f'"\033[93m{a}\033[0m" - не является числом')
+    except NotANumber as err:
+        print(err)
+    else:
+        numbers.append(number(a))
