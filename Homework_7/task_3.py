@@ -14,3 +14,40 @@
 хватает, то в последний ряд записываются все оставшиеся. Например, количество ячеек клетки равняется 12, количество
 ячеек в ряду — 5. Тогда метод make_order() вернет строку: *****\n*****\n**. Или, количество ячеек клетки равняется
 15, количество ячеек в ряду — 5. Тогда метод make_order() вернет строку: *****\n*****\n*****. """
+
+class Cell:
+    def __init__(self, number):
+        self.number = int(number)
+
+    def __str__(self):
+        return f'органических клеток {self.number * "*"}'
+
+    def __add__(self, other):
+        return Cell(self.number + other.number)
+
+    def __sub__(self, other):
+        return Cell(self.number - other.number) if (self.number - other.number) > 0 else 'Разность количества ячеек ' \
+                                                                                         'двух клеток меньше нуля! '
+
+    def __mul__(self, other):
+        return Cell(int(self.number * other.number))
+
+    def __truediv__(self, other):
+        return Cell(round(self.number // other.number))
+
+    def make_order(self, cells):
+        row = ''
+        for i in range(int(self.number / cells)):
+            row += f'{"*" * cells}\\n'
+        row += f'{"*" * (self.number % cells)}'
+        return row
+
+
+x = Cell(int(input('Введите первое значение количества клеток: ')))
+y = Cell(int(input('Введите второе значение количества клеток: ')))
+print(f'Сложение {x + y}')
+print(f'Вычитание {x - y}')
+print(f'Умножение {x * y}')
+print(f'Деление {x / y}')
+g = int(input('Введите необходимое количество ячеек в ряду дя : '))
+print(f'Структуирование по ряду составляет {x.make_order(g)}')
